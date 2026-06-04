@@ -3,107 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pratama Accounting - Dashboard Keuangan Premium</title>
+    <title>Pratama Cell - Dashboard Neo Brutalist</title>
     
-    <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap 5 CSS (Kita gunakan untuk Grid System utamanya) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- FontAwesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
-    <!-- SweetAlert2 CSS untuk popup message -->
+    <!-- SweetAlert2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
 
+    <!-- Google Fonts: Space Grotesk (Heading) & Plus Jakarta Sans (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
     <style>
+        /* RESET & BASE */
         body {
-            background-color: #f4f6f9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFFDF9; /* Warna broken white hangat */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1A1A1A;
+            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+            background-size: 20px 20px; /* Efek dot pattern tipis ala komik */
+            background-color: #f0f0f0;
+        }
+
+        h1, h2, h3, h4, h5, h6, .card-title, .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: #1A1A1A;
+        }
+
+        /* NAVBAR ALA KOMIK */
+        .navbar-neo {
+            background-color: #FFD966;
+            border-bottom: 4px solid #1A1A1A;
+            box-shadow: 0 4px 0px #1A1A1A;
+            margin-bottom: 2rem;
         }
         
         .navbar-brand {
-            font-weight: 800;
-            color: #0d6efd !important;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+            background: #fff;
+            padding: 5px 15px;
+            border: 3px solid #1A1A1A;
+            border-radius: 8px;
+            box-shadow: 3px 3px 0px #1A1A1A;
+            transform: rotate(-2deg);
         }
 
-        /* Desain Card modern dengan efek hover halus */
-        .stat-card {
-            border: none;
-            border-radius: 14px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
-        }
-
-        .stat-icon {
-            font-size: 1.8rem;
-            opacity: 0.8;
-        }
-
-        .card-custom {
-            border: none;
-            border-radius: 14px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        /* COMPONENT: NEO CARD (Gaya Utama) */
+        .neo-card {
             background-color: #ffffff;
+            border: 4px solid #1A1A1A;
+            border-radius: 12px;
+            box-shadow: 6px 6px 0px #1A1A1A;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            position: relative;
         }
 
-        /* Penyesuaian tabel agar nyaman di HP */
+        /* Warna Pastel Backgrounds */
+        .neo-bg-yellow { background-color: #FFE694 !important; }
+        .neo-bg-blue { background-color: #A3E2FF !important; }
+        .neo-bg-green { background-color: #A3FFCE !important; }
+        .neo-bg-pink { background-color: #FFB5E8 !important; }
+        .neo-bg-orange { background-color: #FFC099 !important; }
+
+        /* COMPONENT: NEO BUTTONS */
+        .btn-neo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            border: 3px solid #1A1A1A;
+            border-radius: 8px;
+            box-shadow: 4px 4px 0px #1A1A1A;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.1s;
+            color: #1A1A1A;
+        }
+        
+        .btn-neo:hover {
+            color: #1A1A1A;
+            filter: brightness(0.9);
+        }
+
+        .btn-neo:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #1A1A1A;
+        }
+
+        .btn-neo-primary { background-color: #00A3FF; color: white; }
+        .btn-neo-success { background-color: #00E676; }
+        .btn-neo-warning { background-color: #FFD966; }
+        .btn-neo-danger { background-color: #FF4B4B; color: white; }
+        .btn-neo-light { background-color: #ffffff; }
+
+        /* COMPONENT: FORMS & INPUTS */
+        .form-control, .form-select, .input-group-text {
+            border: 3px solid #1A1A1A !important;
+            border-radius: 8px !important;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            background-color: #fff;
+        }
+        
+        .input-group-text {
+            background-color: #E2E8F0;
+        }
+
+        .form-control:focus, .form-select:focus {
+            box-shadow: 4px 4px 0px #00A3FF !important;
+            border-color: #1A1A1A !important;
+            outline: none;
+        }
+
+        /* TABLES */
         .table-responsive {
-            border-radius: 10px;
+            border: 3px solid #1A1A1A;
+            border-radius: 8px;
+            background-color: #fff;
         }
         
-        th {
-            background-color: #f8f9fa !important;
-            color: #495057;
-            font-weight: 600;
-            white-space: nowrap;
+        .table {
+            margin-bottom: 0;
         }
-        
-        td {
+
+        .table th {
+            background-color: #f0f0f0 !important;
+            border-bottom: 3px solid #1A1A1A !important;
+            color: #1A1A1A;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .table td, .table th {
+            border-color: #1A1A1A;
             vertical-align: middle;
             white-space: nowrap;
         }
 
-        /* Status Warna Khusus */
-        .text-profit { color: #198754; font-weight: 600; }
-        .text-loss { color: #dc3545; font-weight: 600; }
+        /* UTIL & TEXT COLORS */
+        .text-profit { color: #00A859; font-weight: 800; }
+        .text-loss { color: #FF4B4B; font-weight: 800; }
         
-        .table-kategori th {
-            background-color: #f1f3f5 !important;
-            font-size: 0.85rem;
-        }
-        .table-kategori td {
-            font-size: 0.9rem;
+        .badge-neo {
+            border: 2px solid #1A1A1A;
+            border-radius: 6px;
+            box-shadow: 2px 2px 0px #1A1A1A;
+            font-weight: 800;
+            color: #1A1A1A;
+            padding: 5px 10px;
         }
 
-        /* Atur container chart agar tetap responsif di mobile */
+        /* CHART CONTAINER */
         .chart-container {
             position: relative;
-            height: 230px;
+            height: 250px;
             width: 100%;
         }
 
-        /* Badge Filter Aktif */
-        .badge-filter {
-            font-size: 0.85rem;
-            padding: 6px 12px;
-            border-radius: 30px;
+        /* SWEET ALERT OVERRIDE FONT */
+        .swal2-popup {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            border: 4px solid #1A1A1A !important;
+            border-radius: 12px !important;
+            box-shadow: 8px 8px 0px #1A1A1A !important;
+        }
+        .swal2-confirm {
+            border: 3px solid #1A1A1A !important;
+            border-radius: 8px !important;
+            box-shadow: 4px 4px 0px #1A1A1A !important;
         }
     </style>
 </head>
 <body>
 
     <!-- Navigasi Atas -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+    <nav class="navbar navbar-expand-lg navbar-neo py-3">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fa-solid text-primary me-2"><img src="pratama cell logo.png" width="150" height="100" alt="Logo"></i>Pratama Cell <span class="text-secondary fw-normal">Pro</span>
+                <i class="fa-solid text-danger me-2"><img src="pratama cell logo.png" width="150" height="100" alt=""></i>PRATAMA CELL
             </a>
-            <span class="navbar-text text-muted small d-none d-sm-inline">
-                Sistem Pencatatan Finansial Pratama Cell
+            <span class="navbar-text fw-bold text-dark d-none d-sm-inline badge-neo bg-white">
+                Dashboard Admin ⚡
             </span>
         </div>
     </nav>
@@ -112,39 +196,36 @@
 
         <!-- ROW 1: MANAJEMEN SALDO AGEN & INPUT TRANSAKSI -->
         <div class="row g-4 mb-4">
+            
             <!-- MODUL SALDO AGEN -->
             <div class="col-12 col-lg-5">
-                <div class="card card-custom h-100 border-start border-primary border-4">
-                    <div class="card-body p-4 d-flex flex-column justify-content-between">
-                        <div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title m-0 text-dark">
-                                    <i class="fa-solid fa-server text-primary me-2"></i>Saldo Aplikasi Agen
-                                </h5>
-                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalTopUp">
-                                    <i class="fa-solid fa-plus me-1"></i> Top Up
-                                </button>
-                            </div>
-                            
-                            <!-- Display Saldo Saat Ini -->
-                            <div class="p-3 bg-light rounded-3 mb-3 text-center">
-                                <span class="text-muted d-block small mb-1">SALDO TERCATAT DI SISTEM</span>
-                                <h2 class="fw-bold text-primary mb-0" id="displaySaldoAgen">Rp 0</h2>
-                            </div>
+                <div class="neo-card neo-bg-yellow h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title m-0">
+                            <i class="fa-solid fa-wallet me-2"></i>Saldo Agen
+                        </h5>
+                        <button class="btn btn-neo btn-neo-light btn-sm" data-bs-toggle="modal" data-bs-target="#modalTopUp">
+                            <i class="fa-solid fa-plus"></i> Top Up
+                        </button>
+                    </div>
+                    
+                    <!-- Display Saldo Saat Ini -->
+                    <div class="p-3 bg-white border border-dark border-3 rounded-3 mb-3 text-center" style="box-shadow: inset 3px 3px 0px rgba(0,0,0,0.1);">
+                        <span class="fw-bold d-block small mb-1">SALDO SISTEM</span>
+                        <h2 class="font-heading fw-bold mb-0" id="displaySaldoAgen" style="font-size: 2.2rem; color: #00A3FF; -webkit-text-stroke: 1px #111;">Rp 0</h2>
+                    </div>
 
-                            <!-- Kalkulator Deteksi Selisih -->
-                            <div class="mb-2">
-                                <label class="form-label small fw-semibold text-secondary">Cocokkan dengan Saldo Riil di HP:</label>
-                                <div class="input-group input-group-sm mb-2">
-                                    <span class="input-group-text bg-white">Rp</span>
-                                    <input type="text" class="form-control format-rupiah" id="inputSaldoRiil" placeholder="Masukkan saldo riil aplikasi...">
-                                    <button class="btn btn-primary" onclick="cocokkanSaldo()">Cek Selisih</button>
-                                </div>
-                                <!-- Panel Hasil Selisih -->
-                                <div id="panelSelisih" class="p-2 rounded-3 text-center small d-none">
-                                    <!-- Hasil render dinamis -->
-                                </div>
-                            </div>
+                    <!-- Kalkulator Deteksi Selisih -->
+                    <div class="mb-2">
+                        <label class="form-label small fw-bold">Cek Selisih vs HP Riil:</label>
+                        <div class="input-group input-group-sm mb-2">
+                            <span class="input-group-text">Rp</span>
+                            <input type="text" class="form-control format-rupiah" id="inputSaldoRiil" placeholder="Saldo di app...">
+                            <button class="btn btn-neo btn-neo-primary" onclick="cocokkanSaldo()">Cek</button>
+                        </div>
+                        <!-- Panel Hasil Selisih -->
+                        <div id="panelSelisih" class="p-2 border border-dark border-2 rounded-3 text-center fw-bold small d-none" style="background-color: #fff;">
+                            <!-- Hasil render dinamis -->
                         </div>
                     </div>
                 </div>
@@ -152,86 +233,81 @@
 
             <!-- FORM INPUT TRANSAKSI -->
             <div class="col-12 col-lg-7">
-                <div class="card card-custom h-100">
-                    <div class="card-body p-4">
-                        <h5 class="card-title mb-3 text-dark">
-                            <i class="fa-solid fa-cart-plus text-success me-2"></i>Catat Transaksi Baru
-                        </h5>
-                        <form id="formTransaksi">
-                            <div class="row g-3">
-                                <div class="col-12 col-sm-6 col-md-4">
-                                    <label class="form-label small fw-semibold">Kategori</label>
-                                    <select class="form-select" id="inputKategori" required>
-                                        <option value="" selected disabled>Pilih...</option>
-                                        <option value="Pulsa">Pulsa</option>
-                                        <option value="Paket Data">Paket Data</option>
-                                        <option value="Token Listrik">Token Listrik</option>
-                                        <option value="Top-Up E-Wallet">Top-Up E-Wallet</option>
-                                        <option value="Lain-lain">Lain-lain</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4">
-                                    <label class="form-label small fw-semibold">Harga Modal</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-light">Rp</span>
-                                        <input type="text" class="form-control format-rupiah" id="inputModal" placeholder="0" required>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <label class="form-label small fw-semibold">Harga Jual</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-light">Rp</span>
-                                        <input type="text" class="form-control format-rupiah" id="inputJual" placeholder="0" required>
-                                    </div>
-                                </div>
-                                <div class="col-12 d-flex align-items-end mt-4">
-                                    <button type="submit" class="btn btn-success w-100 py-2 fw-bold shadow-sm">
-                                        <i class="fa-solid fa-save me-2"></i>Simpan Transaksi
-                                    </button>
+                <div class="neo-card h-100 p-4">
+                    <h5 class="card-title mb-4">
+                        <i class="fa-solid fa-cart-plus text-danger me-2"></i>Catat Transaksi Baru
+                    </h5>
+                    <form id="formTransaksi">
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <label class="form-label small fw-bold">Kategori</label>
+                                <select class="form-select" id="inputKategori" required>
+                                    <option value="" selected disabled>Pilih...</option>
+                                    <option value="Pulsa">Pulsa</option>
+                                    <option value="Paket Data">Paket Data</option>
+                                    <option value="Token Listrik">Token Listrik</option>
+                                    <option value="Top-Up E-Wallet">Top-Up E-Wallet</option>
+                                    <option value="Lain-lain">Lain-lain</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <label class="form-label small fw-bold">Harga Modal</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Rp</span>
+                                    <input type="text" class="form-control format-rupiah" id="inputModal" placeholder="0" required>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                            <div class="col-12 col-md-4">
+                                <label class="form-label small fw-bold">Harga Jual</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Rp</span>
+                                    <input type="text" class="form-control format-rupiah" id="inputJual" placeholder="0" required>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-neo btn-neo-success w-100 py-2 fs-5">
+                                    <i class="fa-solid fa-bolt me-2"></i>SIMPAN TRANSAKSI
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
 
         <!-- FILTER RENTANG WAKTU -->
-        <div class="card card-custom mb-4">
-            <div class="card-body p-3 d-flex flex-wrap justify-content-between align-items-center gap-3">
-                <div class="d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-filter text-secondary"></i>
-                    <span class="fw-semibold small text-secondary">Filter Waktu:</span>
-                    <span class="badge bg-primary badge-filter" id="labelFilterAktif">Semua Transaksi</span>
-                </div>
-                
-                <div class="d-flex flex-wrap gap-2">
-                    <button class="btn btn-sm btn-outline-secondary px-3 active" onclick="setFilter('semua', this)">Semua</button>
-                    <button class="btn btn-sm btn-outline-secondary px-3" onclick="setFilter('hari-ini', this)">Hari Ini</button>
-                    <button class="btn btn-sm btn-outline-secondary px-3" onclick="setFilter('bulan-ini', this)">Bulan Ini</button>
-                    <button class="btn btn-sm btn-outline-secondary px-3" id="btnFilterKustom" onclick="tampilkanFilterKustom()">Kustom...</button>
-                    <button class="btn btn-sm btn-success px-3 ms-md-2" onclick="eksporCSV()">
-                        <i class="fa-solid fa-file-excel me-1"></i> Ekspor CSV
-                    </button>
-                </div>
+        <div class="neo-card mb-4 p-3 d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-2">
+                <span class="fw-bold bg-dark text-white px-2 py-1 rounded-2 small border border-dark">FILTER WAKTU:</span>
+                <span class="badge-neo bg-warning" id="labelFilterAktif">Semua Transaksi</span>
+            </div>
+            
+            <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-neo btn-neo-light btn-sm px-3" onclick="setFilter('semua', this)">Semua</button>
+                <button class="btn btn-neo btn-neo-light btn-sm px-3" onclick="setFilter('hari-ini', this)">Hari Ini</button>
+                <button class="btn btn-neo btn-neo-light btn-sm px-3" onclick="setFilter('bulan-ini', this)">Bulan Ini</button>
+                <button class="btn btn-neo btn-neo-light btn-sm px-3" id="btnFilterKustom" onclick="tampilkanFilterKustom()">Kustom...</button>
+                <button class="btn btn-neo btn-neo-danger btn-sm px-3 ms-md-2" onclick="eksporCSV()">
+                    <i class="fa-solid fa-download me-1"></i> CSV
+                </button>
             </div>
         </div>
 
         <!-- PANEL INPUT KUSTOM TANGGAL (Hidden by default) -->
-        <div class="card card-custom mb-4 d-none animate__animated animate__fadeIn" id="panelTanggalKustom">
-            <div class="card-body p-3 bg-light rounded-3">
+        <div class="neo-card neo-bg-orange mb-4 d-none" id="panelTanggalKustom">
+            <div class="p-3">
                 <div class="row g-2 align-items-end justify-content-end">
                     <div class="col-12 col-sm-4 col-md-3">
                         <label class="form-label small fw-bold">Dari Tanggal</label>
-                        <input type="date" class="form-control form-control-sm" id="tanggalMulai">
+                        <input type="date" class="form-control" id="tanggalMulai">
                     </div>
                     <div class="col-12 col-sm-4 col-md-3">
                         <label class="form-label small fw-bold">Sampai Tanggal</label>
-                        <input type="date" class="form-control form-control-sm" id="tanggalSelesai">
+                        <input type="date" class="form-control" id="tanggalSelesai">
                     </div>
                     <div class="col-12 col-sm-4 col-md-2 d-flex gap-2">
-                        <button class="btn btn-sm btn-primary w-100" onclick="terapkanTanggalKustom()">Terapkan</button>
-                        <button class="btn btn-sm btn-outline-secondary" onclick="tutupFilterKustom()"><i class="fa-solid fa-xmark"></i></button>
+                        <button class="btn btn-neo btn-neo-primary w-100" onclick="terapkanTanggalKustom()">Terapkan</button>
+                        <button class="btn btn-neo btn-neo-light" onclick="tutupFilterKustom()"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
             </div>
@@ -241,94 +317,66 @@
         <div class="row g-3 mb-4">
             <!-- Card Omset -->
             <div class="col-6 col-md-3">
-                <div class="card stat-card bg-primary text-white h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="card-title mb-0 small">Omset (Penjualan)</h6>
-                            <i class="fa-solid fa-wallet stat-icon"></i>
-                        </div>
-                        <h4 class="mb-0 fw-bold" id="totalOmset">Rp 0</h4>
-                    </div>
+                <div class="neo-card neo-bg-blue p-3 h-100 text-center">
+                    <h6 class="card-title small mb-2 text-dark">TOTAL OMSET</h6>
+                    <h4 class="mb-0 fw-bold" id="totalOmset" style="-webkit-text-stroke: 1px #111; color: white;">Rp 0</h4>
                 </div>
             </div>
             
             <!-- Card Modal -->
             <div class="col-6 col-md-3">
-                <div class="card stat-card bg-secondary text-white h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="card-title mb-0 small">Modal Terpakai</h6>
-                            <i class="fa-solid fa-money-bill-transfer stat-icon"></i>
-                        </div>
-                        <h4 class="mb-0 fw-bold" id="totalModal">Rp 0</h4>
-                    </div>
+                <div class="neo-card neo-bg-orange p-3 h-100 text-center">
+                    <h6 class="card-title small mb-2 text-dark">MODAL TERPAKAI</h6>
+                    <h4 class="mb-0 fw-bold" id="totalModal" style="-webkit-text-stroke: 1px #111; color: white;">Rp 0</h4>
                 </div>
             </div>
             
             <!-- Card Keuntungan Bersih -->
             <div class="col-6 col-md-3">
-                <div class="card stat-card bg-success text-white h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="card-title mb-0 small">Untung Bersih</h6>
-                            <i class="fa-solid fa-hand-holding-dollar stat-icon"></i>
-                        </div>
-                        <h4 class="mb-0 fw-bold" id="totalUntung">Rp 0</h4>
-                    </div>
+                <div class="neo-card neo-bg-green p-3 h-100 text-center">
+                    <h6 class="card-title small mb-2 text-dark">UNTUNG BERSIH</h6>
+                    <h4 class="mb-0 fw-bold" id="totalUntung" style="-webkit-text-stroke: 1px #111; color: white;">Rp 0</h4>
                 </div>
             </div>
             
             <!-- Card Persentase -->
             <div class="col-6 col-md-3">
-                <div class="card stat-card bg-info text-white h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="card-title mb-0 small">Rata-rata %</h6>
-                            <i class="fa-solid fa-chart-line stat-icon"></i>
-                        </div>
-                        <h4 class="mb-0 fw-bold" id="rataPersentase">0%</h4>
-                    </div>
+                <div class="neo-card neo-bg-pink p-3 h-100 text-center">
+                    <h6 class="card-title small mb-2 text-dark">MARGIN Laba</h6>
+                    <h4 class="mb-0 fw-bold" id="rataPersentase" style="-webkit-text-stroke: 1px #111; color: white;">0%</h4>
                 </div>
             </div>
         </div>
 
         <!-- ROW 3: GRAFIK VISUALISASI -->
         <div class="row g-4 mb-4">
-            <!-- Tren Keuntungan (Line Chart) -->
             <div class="col-12 col-md-8">
-                <div class="card card-custom h-100">
-                    <div class="card-body p-4">
-                        <h5 class="card-title mb-3"><i class="fa-solid fa-chart-area text-primary me-2"></i>Tren Keuntungan Harian</h5>
-                        <div class="chart-container">
-                            <canvas id="chartTren"></canvas>
-                        </div>
+                <div class="neo-card p-4 h-100">
+                    <h5 class="card-title mb-3">Tren Laba Harian</h5>
+                    <div class="chart-container">
+                        <canvas id="chartTren"></canvas>
                     </div>
                 </div>
             </div>
             
-            <!-- Kontribusi Kategori (Doughnut Chart) -->
             <div class="col-12 col-md-4">
-                <div class="card card-custom h-100">
-                    <div class="card-body p-4">
-                        <h5 class="card-title mb-3"><i class="fa-solid fa-chart-pie text-info me-2"></i>Kontribusi Laba</h5>
-                        <div class="chart-container">
-                            <canvas id="chartDonat"></canvas>
-                        </div>
+                <div class="neo-card p-4 h-100">
+                    <h5 class="card-title mb-3">Kontribusi Kategori</h5>
+                    <div class="chart-container">
+                        <canvas id="chartDonat"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- ROW 4: ANALISIS PER KATEGORI -->
-        <div class="card card-custom mb-4">
-            <div class="card-body p-0">
-                <div class="p-3 border-bottom bg-light">
-                    <h5 class="card-title m-0 text-dark">
-                        <i class="fa-solid fa-table-list text-primary me-2"></i>Analisis Keuntungan per Kategori
-                    </h5>
-                </div>
+        <div class="neo-card mb-4">
+            <div class="p-3 border-bottom border-dark border-3 neo-bg-blue" style="border-radius: 8px 8px 0 0;">
+                <h5 class="card-title m-0">Rekap per Kategori</h5>
+            </div>
+            <div class="p-3">
                 <div class="table-responsive">
-                    <table class="table table-striped table-kategori mb-0">
+                    <table class="table table-striped mb-0">
                         <thead>
                             <tr>
                                 <th>Kategori</th>
@@ -338,7 +386,7 @@
                                 <th>Margin (%)</th>
                             </tr>
                         </thead>
-                        <tbody id="tabelKategori">
+                        <tbody id="tabelKategori" class="fw-bold">
                             <!-- Di-render dinamis oleh JS -->
                         </tbody>
                     </table>
@@ -347,17 +395,15 @@
         </div>
 
         <!-- ROW 5: RIWAYAT TRANSAKSI -->
-        <div class="card card-custom">
-            <div class="card-body p-0">
-                <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-light">
-                    <h5 class="card-title m-0 text-dark">
-                        <i class="fa-solid fa-clock-rotate-left text-secondary me-2"></i>Riwayat Transaksi Terfilter
-                    </h5>
-                    <button class="btn btn-sm btn-outline-danger px-3" onclick="konfirmasiHapusSemua()">
-                        <i class="fa-solid fa-trash-can me-1"></i>Hapus Semua Data
-                    </button>
-                </div>
-                
+        <div class="neo-card">
+            <div class="p-3 border-bottom border-dark border-3 d-flex justify-content-between align-items-center neo-bg-green" style="border-radius: 8px 8px 0 0;">
+                <h5 class="card-title m-0">Riwayat Transaksi</h5>
+                <button class="btn btn-neo btn-neo-danger btn-sm px-3" onclick="konfirmasiHapusSemua()">
+                    <i class="fa-solid fa-trash-can me-1"></i>Hapus Semua
+                </button>
+            </div>
+            
+            <div class="p-3">
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
                         <thead>
@@ -366,20 +412,21 @@
                                 <th>Kategori</th>
                                 <th>Harga Modal</th>
                                 <th>Harga Jual</th>
-                                <th>Keuntungan (Rp)</th>
+                                <th>Laba (Rp)</th>
                                 <th>Margin (%)</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="tabelRiwayat">
+                        <tbody id="tabelRiwayat" class="fw-bold">
                             <!-- Di-render dinamis oleh JS -->
                         </tbody>
                     </table>
                 </div>
                 
-                <div id="pesanKosong" class="text-center py-5 d-none text-muted">
-                    <i class="fa-solid fa-box-open fs-1 mb-3 text-secondary" style="opacity: 0.5;"></i>
-                    <p class="m-0">Tidak ada transaksi yang cocok dengan filter tanggal saat ini.</p>
+                <div id="pesanKosong" class="text-center py-5 d-none">
+                    <h1 style="font-size: 4rem;">🤷‍♂️</h1>
+                    <h5 class="font-heading">Data Kosong Melompong!</h5>
+                    <p class="m-0 text-muted fw-bold">Belum ada transaksi di tanggal ini.</p>
                 </div>
             </div>
         </div>
@@ -389,29 +436,29 @@
     <!-- MODAL TOP UP SALDO AGEN -->
     <div class="modal fade" id="modalTopUp" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 14px;">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-circle-dollar-to-slot text-primary me-2"></i>Tambah / Atur Saldo Agen</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content" style="border: 4px solid #111; border-radius: 12px; box-shadow: 8px 8px 0px #111;">
+                <div class="modal-header neo-bg-yellow border-bottom border-dark border-3">
+                    <h5 class="modal-title font-heading fw-bold">⚙️ Atur Saldo Sistem</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="border: 2px solid #111; border-radius: 5px;"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label small fw-semibold">Metode Update Saldo:</label>
+                        <label class="form-label small fw-bold">Mode Update:</label>
                         <select class="form-select mb-3" id="pilihanUpdateSaldo" onchange="toggleMetodeSaldo()">
                             <option value="tambah">Tambah Saldo Baru (Top Up)</option>
-                            <option value="set">Atur Ulang Saldo Baru (Reset Manual)</option>
+                            <option value="set">Timpa / Reset Saldo Manual</option>
                         </select>
                         
-                        <label class="form-label small fw-semibold">Nominal Uang:</label>
+                        <label class="form-label small fw-bold">Nominal Uang:</label>
                         <div class="input-group">
-                            <span class="input-group-text">Rp</span>
-                            <input type="text" class="form-control format-rupiah" id="inputNominalSaldo" placeholder="Contoh: 500.000">
+                            <span class="input-group-text fw-bold">Rp</span>
+                            <input type="text" class="form-control format-rupiah" id="inputNominalSaldo" placeholder="Misal: 500.000">
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" onclick="simpanSaldoBaru()">Simpan Saldo</button>
+                <div class="modal-footer border-top border-dark border-3">
+                    <button type="button" class="btn btn-neo btn-neo-light" data-bs-dismiss="modal">BATAL</button>
+                    <button type="button" class="btn btn-neo btn-neo-primary" onclick="simpanSaldoBaru()">SIMPAN SALDO</button>
                 </div>
             </div>
         </div>
@@ -422,20 +469,18 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- LOGIKA UTAMA FINANSIAL (JavaScript) -->
     <script>
-        // --- 1. STATE & INITIALIZATION ---
+        // --- 1. STATE & INITIALIZATION (Sama Persis dengan versi sebelumnya) ---
         let daftarTransaksi = JSON.parse(localStorage.getItem('dataTransaksiKonter')) || [];
         let saldoAgen = parseInt(localStorage.getItem('saldoAgenKonter')) || 0;
         
         const semuaKategori = ["Pulsa", "Paket Data", "Token Listrik", "Top-Up E-Wallet", "Lain-lain"];
         
         // State Filter Waktu Aktif
-        let filterWaktu = 'semua'; // pilihan: semua, hari-ini, bulan-ini, kustom
+        let filterWaktu = 'semua';
         let kustomTanggalMulai = '';
         let kustomTanggalSelesai = '';
 
-        // Referensi Objek Grafik (Chart.js)
         let instancesChartTren = null;
         let instancesChartDonat = null;
 
@@ -458,7 +503,7 @@
             const date = new Date(isoString);
             const opsiTgl = { day: '2-digit', month: '2-digit', year: 'numeric' };
             const opsiWaktu = { hour: '2-digit', minute: '2-digit' };
-            return `${date.toLocaleDateString('id-ID', opsiTgl)} <br><small class="text-muted">${date.toLocaleTimeString('id-ID', opsiWaktu)}</small>`;
+            return `${date.toLocaleDateString('id-ID', opsiTgl)} <br><small style="color: #666;">${date.toLocaleTimeString('id-ID', opsiWaktu)}</small>`;
         }
 
         function setupFormatRupiah() {
@@ -476,33 +521,29 @@
             filterWaktu = tipe;
             tutupFilterKustom();
             
-            // Mengganti status aktif tombol filter
-            const buttons = element.parentElement.querySelectorAll('button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
+            // UI Button styling Neo Brutalism
+            const buttons = element.parentElement.querySelectorAll('button:not(.btn-neo-danger)');
+            buttons.forEach(btn => {
+                btn.classList.remove('btn-neo-primary');
+                btn.classList.add('btn-neo-light');
+            });
+            element.classList.remove('btn-neo-light');
+            element.classList.add('btn-neo-primary');
 
-            // Update Label Filter Aktif di UI
             const label = document.getElementById('labelFilterAktif');
-            if (tipe === 'semua') {
-                label.innerText = "Semua Transaksi";
-            } else if (tipe === 'hari-ini') {
-                label.innerText = "Hari Ini (" + new Date().toLocaleDateString('id-ID') + ")";
-            } else if (tipe === 'bulan-ini') {
-                const opsiBulan = { month: 'long', year: 'numeric' };
-                label.innerText = "Bulan Ini (" + new Date().toLocaleDateString('id-ID', opsiBulan) + ")";
-            }
+            if (tipe === 'semua') label.innerText = "Semua Transaksi";
+            else if (tipe === 'hari-ini') label.innerText = "Hari Ini (" + new Date().toLocaleDateString('id-ID') + ")";
+            else if (tipe === 'bulan-ini') label.innerText = "Bulan Ini (" + new Date().toLocaleDateString('id-ID', { month: 'long', year: 'numeric' }) + ")";
 
             updateSistemDashboard();
         }
 
         function tampilkanFilterKustom() {
             document.getElementById('panelTanggalKustom').classList.remove('d-none');
-            document.getElementById('btnFilterKustom').classList.add('active');
         }
 
         function tutupFilterKustom() {
             document.getElementById('panelTanggalKustom').classList.add('d-none');
-            document.getElementById('btnFilterKustom').classList.remove('active');
         }
 
         function terapkanTanggalKustom() {
@@ -510,7 +551,7 @@
             const selesai = document.getElementById('tanggalSelesai').value;
 
             if(!mulai || !selesai) {
-                Swal.fire('Format Salah', 'Pilih kedua tanggal terlebih dahulu!', 'warning');
+                Swal.fire('Eits!', 'Pilih kedua tanggalnya dulu ya!', 'warning');
                 return;
             }
 
@@ -520,39 +561,30 @@
 
             const tglAwal = new Date(mulai).toLocaleDateString('id-ID');
             const tglAkhir = new Date(selesai).toLocaleDateString('id-ID');
-            document.getElementById('labelFilterAktif').innerText = `Rentang: ${tglAwal} - ${tglAkhir}`;
+            document.getElementById('labelFilterAktif').innerText = `${tglAwal} - ${tglAkhir}`;
             
             updateSistemDashboard();
         }
 
-        // Mendapatkan data transaksi yang sudah disaring waktu
         function dapatkanDataTerfilter() {
             const hariIniStr = new Date().toISOString().split('T')[0];
-            const bulanIniStr = new Date().toISOString().substring(0, 7); // "YYYY-MM"
+            const bulanIniStr = new Date().toISOString().substring(0, 7);
 
             return daftarTransaksi.filter(trx => {
-                const tanggalTrx = trx.waktu.split('T')[0]; // "YYYY-MM-DD"
-                
-                if (filterWaktu === 'hari-ini') {
-                    return tanggalTrx === hariIniStr;
-                } else if (filterWaktu === 'bulan-ini') {
-                    return tanggalTrx.startsWith(bulanIniStr);
-                } else if (filterWaktu === 'kustom') {
-                    return tanggalTrx >= kustomTanggalMulai && tanggalTrx <= kustomTanggalSelesai;
-                }
-                return true; // semua
+                const tanggalTrx = trx.waktu.split('T')[0];
+                if (filterWaktu === 'hari-ini') return tanggalTrx === hariIniStr;
+                else if (filterWaktu === 'bulan-ini') return tanggalTrx.startsWith(bulanIniStr);
+                else if (filterWaktu === 'kustom') return tanggalTrx >= kustomTanggalMulai && tanggalTrx <= kustomTanggalSelesai;
+                return true;
             });
         }
 
         // --- 4. ENGINE PERHITUNGAN UTAMA & RENDERING ---
         function updateSistemDashboard() {
-            // Ambil data transaksi terseleksi
             const dataTerfilter = dapatkanDataTerfilter();
             
-            // Update Tampilan Saldo Agen
             document.getElementById('displaySaldoAgen').innerText = `Rp ${formatRupiahDisplay(saldoAgen)}`;
 
-            // Render komponen-komponen UI
             renderTabelTransaksi(dataTerfilter);
             renderAnalisisKategori(dataTerfilter);
             hitungKartuStatistik(dataTerfilter);
@@ -571,19 +603,26 @@
                 
                 data.forEach(trx => {
                     const colorClass = trx.untung >= 0 ? 'text-profit' : 'text-loss';
-                    const iconTrend = trx.untung >= 0 ? '<i class="fa-solid fa-arrow-trend-up me-1"></i>' : '<i class="fa-solid fa-arrow-trend-down me-1"></i>';
+                    const iconTrend = trx.untung >= 0 ? '📈' : '📉';
+                    
+                    // Kustomisasi badge per kategori
+                    let badgeColor = 'bg-light';
+                    if(trx.kategori == 'Pulsa') badgeColor = 'bg-primary text-white';
+                    if(trx.kategori == 'Paket Data') badgeColor = 'bg-success text-white';
+                    if(trx.kategori == 'Token Listrik') badgeColor = 'bg-warning text-dark';
+                    if(trx.kategori == 'Top-Up E-Wallet') badgeColor = 'bg-info text-dark';
 
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td>${formatTanggal(trx.waktu)}</td>
-                        <td><span class="badge bg-secondary">${trx.kategori}</span></td>
+                        <td><span class="badge-neo ${badgeColor}">${trx.kategori}</span></td>
                         <td>Rp ${formatRupiahDisplay(trx.modal)}</td>
                         <td>Rp ${formatRupiahDisplay(trx.jual)}</td>
                         <td class="${colorClass}">Rp ${formatRupiahDisplay(trx.untung)}</td>
-                        <td class="${colorClass}">${iconTrend}${trx.persen}%</td>
+                        <td class="${colorClass}">${iconTrend} ${trx.persen}%</td>
                         <td class="text-center">
-                            <button class="btn btn-sm btn-outline-danger rounded-circle" onclick="hapusTransaksi(${trx.id})" title="Hapus">
-                                <i class="fa-solid fa-trash-can"></i>
+                            <button class="btn btn-neo btn-neo-danger btn-sm" onclick="hapusTransaksi(${trx.id})" title="Hapus">
+                                <i class="fa-solid fa-xmark"></i>
                             </button>
                         </td>
                     `;
@@ -594,9 +633,7 @@
 
         function renderAnalisisKategori(data) {
             let rekapKategori = {};
-            semuaKategori.forEach(kat => {
-                rekapKategori[kat] = { omset: 0, modal: 0, untung: 0 };
-            });
+            semuaKategori.forEach(kat => rekapKategori[kat] = { omset: 0, modal: 0, untung: 0 });
 
             data.forEach(trx => {
                 if (rekapKategori[trx.kategori]) {
@@ -616,7 +653,7 @@
 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td><strong>${kat}</strong></td>
+                    <td>${kat}</td>
                     <td>Rp ${formatRupiahDisplay(item.omset)}</td>
                     <td>Rp ${formatRupiahDisplay(item.modal)}</td>
                     <td class="${colorClass}">Rp ${formatRupiahDisplay(item.untung)}</td>
@@ -658,19 +695,16 @@
                 return;
             }
 
-            // Validasi apakah saldo mencukupi
             if (saldoAgen < modal) {
                 Swal.fire({
-                    title: 'Peringatan Saldo!',
-                    text: 'Saldo agen Anda terindikasi lebih kecil daripada harga modal transaksi ini. Tetap simpan?',
+                    title: 'Saldo Kurang!',
+                    text: 'Saldo sistem terdeteksi kurang dari harga modal. Tetap paksa simpan?',
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Ya, Simpan',
-                    cancelButtonText: 'Batal'
+                    confirmButtonText: 'GAS SIMPAN',
+                    cancelButtonText: 'BATAL'
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        prosesSimpanTransaksi(kategori, modal, jual);
-                    }
+                    if (result.isConfirmed) prosesSimpanTransaksi(kategori, modal, jual);
                 });
             } else {
                 prosesSimpanTransaksi(kategori, modal, jual);
@@ -680,7 +714,6 @@
         function prosesSimpanTransaksi(kategori, modal, jual) {
             const untungNominal = jual - modal;
             let persentase = (untungNominal / modal) * 100;
-            persentase = parseFloat(persentase.toFixed(1)); 
 
             const transaksiBaru = {
                 id: Date.now(),
@@ -689,34 +722,29 @@
                 modal: modal,
                 jual: jual,
                 untung: untungNominal,
-                persen: persentase
+                persen: parseFloat(persentase.toFixed(1))
             };
 
-            // Tambahkan transaksi
             daftarTransaksi.unshift(transaksiBaru);
-
-            // Pengurangan Saldo Agen Terpangkas Otomatis
             saldoAgen -= modal;
-            if(saldoAgen < 0) saldoAgen = 0; // proteksi di atas nol
+            if(saldoAgen < 0) saldoAgen = 0; 
 
             simpanKeLocalStorage();
             updateSistemDashboard();
 
-            // Reset Form Transaksi
             document.getElementById('formTransaksi').reset();
             document.getElementById('inputSaldoRiil').value = '';
             document.getElementById('panelSelisih').classList.add('d-none');
 
             Swal.fire({
-                title: 'Berhasil!',
-                text: 'Transaksi dicatat & saldo agen diperbarui otomatis.',
+                title: 'Mantap!',
+                text: 'Transaksi sukses dicatat bro.',
                 icon: 'success',
                 timer: 1300,
                 showConfirmButton: false
             });
         }
 
-        // Manajemen Update Saldo (Top-Up atau Reset Manual)
         function toggleMetodeSaldo() {
             const mode = document.getElementById('pilihanUpdateSaldo').value;
             const input = document.getElementById('inputNominalSaldo');
@@ -726,70 +754,50 @@
 
         function simpanSaldoBaru() {
             const mode = document.getElementById('pilihanUpdateSaldo').value;
-            const nominalInput = document.getElementById('inputNominalSaldo').value;
-            const nominal = bersihkanRupiah(nominalInput);
+            const nominal = bersihkanRupiah(document.getElementById('inputNominalSaldo').value);
 
-            if (nominal <= 0) {
-                Swal.fire('Input Salah', 'Harap masukkan nominal uang yang valid!', 'warning');
-                return;
-            }
+            if (nominal <= 0) return Swal.fire('Error', 'Nominal uang tidak valid!', 'warning');
 
-            if (mode === 'tambah') {
-                saldoAgen += nominal;
-            } else {
-                saldoAgen = nominal;
-            }
+            saldoAgen = mode === 'tambah' ? (saldoAgen + nominal) : nominal;
 
             simpanKeLocalStorage();
             updateSistemDashboard();
 
-            // Close Modal
-            const myModalEl = document.getElementById('modalTopUp');
-            const modal = bootstrap.Modal.getInstance(myModalEl);
-            modal.hide();
-
-            // Clear input
+            bootstrap.Modal.getInstance(document.getElementById('modalTopUp')).hide();
             document.getElementById('inputNominalSaldo').value = '';
             document.getElementById('inputSaldoRiil').value = '';
             document.getElementById('panelSelisih').classList.add('d-none');
 
-            Swal.fire({
-                title: 'Saldo Diperbarui!',
-                text: `Saldo Agen berhasil di-update ke Rp ${formatRupiahDisplay(saldoAgen)}`,
-                icon: 'success',
-                timer: 1500
-            });
+            Swal.fire('Beres!', `Saldo Sistem sekarang: Rp ${formatRupiahDisplay(saldoAgen)}`, 'success');
         }
 
-        // Kalkulator Deteksi Selisih Saldo Riil
         function cocokkanSaldo() {
             const inputRiil = document.getElementById('inputSaldoRiil').value;
-            if(!inputRiil) {
-                Swal.fire('Isi Saldo', 'Ketik saldo di aplikasi agen Anda terlebih dahulu untuk mencocokkan.', 'info');
-                return;
-            }
+            if(!inputRiil) return Swal.fire('Isi Dulu', 'Ketik saldo di aplikasi agen aslimu dulu.', 'info');
 
             const saldoRiil = bersihkanRupiah(inputRiil);
             const selisih = saldoRiil - saldoAgen;
-
             const panel = document.getElementById('panelSelisih');
             panel.classList.remove('d-none');
 
             if (selisih === 0) {
-                panel.className = "p-3 rounded-3 text-success bg-success-subtle fw-semibold border border-success";
-                panel.innerHTML = `<i class="fa-solid fa-circle-check me-1"></i> Sempurna! Saldo Anda Sinkron (Cocok)`;
+                panel.style.backgroundColor = '#A3FFCE';
+                panel.innerHTML = `✅ COCOK SEMPURNA!`;
             } else if (selisih < 0) {
-                panel.className = "p-3 rounded-3 text-danger bg-danger-subtle fw-semibold border border-danger";
-                panel.innerHTML = `<i class="fa-solid fa-triangle-exclamation me-1"></i> Selisih: -Rp ${formatRupiahDisplay(Math.abs(selisih))}<br><small class="fw-normal text-muted">Saldo riil di HP lebih kecil. Ada pengeluaran/transaksi modal yang lupa diinput!</small>`;
+                panel.style.backgroundColor = '#FFB5E8';
+                panel.innerHTML = `⚠️ MINUS Rp ${formatRupiahDisplay(Math.abs(selisih))}<br><small class="text-muted">Ada transaksi yang lupa diinput ke web ini.</small>`;
             } else {
-                panel.className = "p-3 rounded-3 text-warning bg-warning-subtle fw-semibold border border-warning";
-                panel.innerHTML = `<i class="fa-solid fa-circle-info me-1"></i> Selisih lebih: +Rp ${formatRupiahDisplay(selisih)}<br><small class="fw-normal text-muted">Uang riil di HP Anda lebih besar. Periksa apakah ada top-up yang belum tercatat di web ini.</small>`;
+                panel.style.backgroundColor = '#FFE694';
+                panel.innerHTML = `💡 LEBIH Rp ${formatRupiahDisplay(selisih)}<br><small class="text-muted">Ada top-up/saldo masuk yang belum dicatat.</small>`;
             }
         }
 
-        // --- 6. VISUALISASI GRAFIK (CHART.JS) ---
+        // --- 6. VISUALISASI GRAFIK (Neo Brutalist Chart.js) ---
+        // Penyesuaian gaya chart agar kaku/tebal (comic style)
+        Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+        Chart.defaults.color = "#111";
+
         function initCharts() {
-            // Setup Grafik Tren Harian (Line)
             const ctxTren = document.getElementById('chartTren').getContext('2d');
             instancesChartTren = new Chart(ctxTren, {
                 type: 'line',
@@ -801,13 +809,18 @@
                     scales: {
                         y: {
                             beginAtZero: true,
+                            grid: { color: '#ddd' },
                             ticks: { callback: value => 'Rp ' + formatRupiahDisplay(value) }
-                        }
+                        },
+                        x: { grid: { color: '#ddd' } }
+                    },
+                    elements: {
+                        line: { tension: 0, borderWidth: 4, borderColor: '#1A1A1A' }, // Garis patah-patah & tebal
+                        point: { radius: 5, backgroundColor: '#FFD966', borderWidth: 2, borderColor: '#1A1A1A', hoverRadius: 7 }
                     }
                 }
             });
 
-            // Setup Grafik Donat Kategori
             const ctxDonat = document.getElementById('chartDonat').getContext('2d');
             instancesChartDonat = new Chart(ctxDonat, {
                 type: 'doughnut',
@@ -815,7 +828,10 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } } }
+                    plugins: { legend: { position: 'right', labels: { font: { weight: 'bold' } } } },
+                    elements: {
+                        arc: { borderWidth: 3, borderColor: '#1A1A1A' } // Border tebal di potongan donat
+                    }
                 }
             });
         }
@@ -823,108 +839,70 @@
         function updateVisualGrafik(data) {
             if(!instancesChartTren || !instancesChartDonat) return;
 
-            // 1. UPDATE GRAFIK TREN KEUNTUNGAN HARIAN
-            // Kumpulkan Laba harian
             let labaHarian = {};
-            // Urutkan dari transaksi terlama agar urutan grafiknya maju ke depan (kronologis)
             const dataKronologis = [...data].reverse();
             
             dataKronologis.forEach(trx => {
                 const tgl = trx.waktu.split('T')[0];
-                const dateObj = new Date(tgl);
-                const labelTgl = dateObj.toLocaleDateString('id-ID', { day: '2-digit', month: 'short' });
+                const labelTgl = new Date(tgl).toLocaleDateString('id-ID', { day: '2-digit', month: 'short' });
                 labaHarian[labelTgl] = (labaHarian[labelTgl] || 0) + trx.untung;
             });
 
-            const labelHari = Object.keys(labaHarian);
-            const nilaiHari = Object.values(labaHarian);
-
-            instancesChartTren.data.labels = labelHari;
+            instancesChartTren.data.labels = Object.keys(labaHarian);
             instancesChartTren.data.datasets = [{
-                label: 'Keuntungan Bersih',
-                data: nilaiHari,
-                borderColor: '#0d6efd',
-                backgroundColor: 'rgba(13, 110, 253, 0.1)',
-                fill: true,
-                tension: 0.3,
-                borderWidth: 2
+                label: 'Laba',
+                data: Object.values(labaHarian),
+                borderColor: '#1A1A1A',
+                backgroundColor: 'rgba(0, 163, 255, 0.2)', // Biru transparan
+                fill: true
             }];
             instancesChartTren.update();
 
-            // 2. UPDATE GRAFIK DONAT KATEGORI
             let labaKategori = {};
             semuaKategori.forEach(kat => labaKategori[kat] = 0);
-            
-            data.forEach(trx => {
-                if (labaKategori[trx.kategori] !== undefined) {
-                    labaKategori[trx.kategori] += trx.untung;
-                }
-            });
+            data.forEach(trx => { if (labaKategori[trx.kategori] !== undefined) labaKategori[trx.kategori] += trx.untung; });
 
             const labelsDonat = semuaKategori.filter(kat => labaKategori[kat] > 0);
-            const nilaiDonat = labelsDonat.map(kat => labaKategori[kat]);
-
             instancesChartDonat.data.labels = labelsDonat;
             instancesChartDonat.data.datasets = [{
-                data: nilaiDonat,
-                backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#0dcaf0', '#6c757d']
+                data: labelsDonat.map(kat => labaKategori[kat]),
+                backgroundColor: ['#00A3FF', '#00E676', '#FFD966', '#FFB5E8', '#FFC099'] // Warna pastel solid
             }];
             instancesChartDonat.update();
         }
 
-        // --- 7. EXPORT DATA KE CSV ---
+        // --- 7. EXPORT DATA KE CSV & RESET ---
         function eksporCSV() {
             const data = dapatkanDataTerfilter();
-            if(data.length === 0) {
-                Swal.fire('Data Kosong', 'Tidak ada data untuk diekspor pada filter ini.', 'info');
-                return;
-            }
+            if(data.length === 0) return Swal.fire('Kosong', 'Nggak ada data buat di-export.', 'info');
 
-            // Tentukan Header Kolom CSV
             let csvContent = "Waktu,Kategori,Harga Modal,Harga Jual,Untung Bersih,Margin (%)\n";
-
-            // Tambahkan baris data
             data.forEach(trx => {
                 const formatWaktu = trx.waktu.replace('T', ' ').substring(0, 16);
                 csvContent += `"${formatWaktu}","${trx.kategori}",${trx.modal},${trx.jual},${trx.untung},"${trx.persen}%"\n`;
             });
 
-            // Ekspor & Download File CSV
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
             const link = document.createElement("a");
-            
-            // Format Nama File sesuai Filter
-            const timestamp = new Date().toISOString().substring(0, 10);
-            link.setAttribute("href", url);
-            link.setAttribute("download", `Laporan_BukuKonter_${filterWaktu}_${timestamp}.csv`);
-            link.style.visibility = 'hidden';
-            
+            link.href = URL.createObjectURL(blob);
+            link.download = `Data_Konter_${filterWaktu}_${new Date().toISOString().substring(0,10)}.csv`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
 
-        // --- 8. HAPUS DATA & LOCALSTORAGE PERSISTENCE ---
         function hapusTransaksi(id) {
             Swal.fire({
-                title: 'Hapus transaksi?',
-                text: "Data terhapus tidak akan memengaruhi saldo agen saat ini (tidak dikembalikan).",
+                title: 'Hapus data ini?',
+                text: "Saldo agen nggak akan kembali/berubah ya.",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#6c757d',
-                confirmButtonText: 'Ya, hapus!'
+                confirmButtonText: 'YAKIN HAPUS'
             }).then((result) => {
                 if (result.isConfirmed) {
                     daftarTransaksi = daftarTransaksi.filter(trx => trx.id !== id);
                     simpanKeLocalStorage();
                     updateSistemDashboard();
-                    
-                    Swal.fire({
-                        toast: true, position: 'top-end', icon: 'success', 
-                        title: 'Berhasil dihapus', showConfirmButton: false, timer: 1500
-                    });
                 }
             })
         }
@@ -932,25 +910,21 @@
         function konfirmasiHapusSemua() {
             if(daftarTransaksi.length === 0) return;
             Swal.fire({
-                title: 'Reset Seluruh Database?',
-                text: "Tindakan ini akan menghapus permanen semua riwayat transaksi & saldo Anda!",
+                title: 'NUKLIR DATABASE?',
+                text: "Semua riwayat transaksi bakal hilang permanen!",
                 icon: 'error',
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#6c757d',
-                confirmButtonText: 'Ya, Bersihkan!'
+                confirmButtonColor: '#FF4B4B',
+                confirmButtonText: 'HANCURKAN'
             }).then((result) => {
                 if (result.isConfirmed) {
                     daftarTransaksi = [];
                     saldoAgen = 0;
                     simpanKeLocalStorage();
                     updateSistemDashboard();
-                    
-                    // Reset input sisa saldo riil
                     document.getElementById('inputSaldoRiil').value = '';
                     document.getElementById('panelSelisih').classList.add('d-none');
-
-                    Swal.fire('Database Kosong!', 'Aplikasi berhasil di-reset.', 'success');
+                    Swal.fire('Dibersihkan!', 'Database sudah kosong.', 'success');
                 }
             })
         }
